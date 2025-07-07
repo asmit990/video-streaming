@@ -33,7 +33,7 @@ try {
 } catch (error) {
  cached.promise = null
  throw error 
-}
+    }
 return cached.conn
 
 }
