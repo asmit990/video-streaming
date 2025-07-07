@@ -16,4 +16,24 @@ export async function connectionToDatabase() {
     if(cached.conn){
         return cached.conn
     }
+
+
+if(!cached.promise){
+    const opts = {
+        bufferCommands: true,
+        maxPoolSize: 10
+    }
+    mongoose
+      .connect(MONGODB_URI)
+      .then(() => mongoose.connection)
+}
+
+try {
+   cached.conn = await cached.promise
+} catch (error) {
+ cached.promise = null
+ throw error 
+}
+return cached.conn
+
 }

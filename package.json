@@ -12,6 +12,7 @@
     "@types/bcryptjs": "^2.4.6",
     "mongoose": "^8.16.1",
     "next": "15.3.5",
+    "next-auth": "^4.24.11",
     "react": "^19.0.0",
     "react-dom": "^19.0.0"
   },
