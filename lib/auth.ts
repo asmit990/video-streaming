@@ -43,9 +43,20 @@ export const authOptions: NextAuthOptions = {
             throw error 
 
         }
-    }
-     })
+    },
+ 
+     }),
     ],
+
+    callbacks: {
+        async jwt({token, user}){
+            if (user){
+                token.id = userAgent.id
+            }
+
+            return token
+        }
+    }
 };
 
 
