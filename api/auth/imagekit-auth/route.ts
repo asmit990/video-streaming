@@ -2,10 +2,7 @@
 import { getUploadAuthParams } from "@imagekit/next/server"
 export async function GET() {
  try {
-    // Your application logic to authenticate the user
-    // For example, you can check if the user is logged in or has the necessary permissions
-    // If the user is not authenticated, you can return an error response
-
+  
     const authenticationParameters = getUploadAuthParams({
         privateKey: process.env.IMAGEKIT_PRIVATE_KEY as string, 
         publicKey: process.env.IMAGEKIT_PUBLIC_KEY as string,
@@ -19,7 +16,9 @@ export async function GET() {
 } catch (error) {
     return Response.json({ 
    error: "Authentication for imagekit is failed"
-    })
+    },
+    { status: 500 }
+)
 }
 
 }
