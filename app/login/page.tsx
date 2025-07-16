@@ -64,7 +64,24 @@ function LoginPage() {
                         </a>
                     </p>
                 </div>
-                
+                {/* Google Sign In Button */}
+                <div>
+                    <button
+                        type="button"
+                        onClick={() => signIn('google', { callbackUrl: '/' })}
+                        className="w-full flex justify-center items-center py-2 px-4 border border-gray-300 rounded-md bg-white text-gray-700 font-medium hover:bg-gray-50 mb-4"
+                    >
+                        <svg className="h-5 w-5 mr-2" viewBox="0 0 48 48">
+                            <g>
+                                <path d="M44.5 20H24v8.5h11.7C34.7 33.1 29.8 36 24 36c-6.6 0-12-5.4-12-12s5.4-12 12-12c2.8 0 5.4 1 7.5 2.6l6.4-6.4C34.1 5.1 29.3 3 24 3c-7.1 0-13.2 3.7-16.7 9.4z" fill="#FFC107"/>
+                                <path d="M6.3 14.7l7 5.1C15.5 16.1 19.4 13 24 13c2.8 0 5.4 1 7.5 2.6l6.4-6.4C34.1 5.1 29.3 3 24 3c-7.1 0-13.2 3.7-16.7 9.4z" fill="#FF3D00"/>
+                                <path d="M24 45c5.6 0 10.4-1.9 14.1-5.1l-6.5-5.3C29.7 36.1 27 37 24 37c-5.7 0-10.6-3.7-12.3-8.9l-7 5.4C7.9 41.2 15.4 45 24 45z" fill="#4CAF50"/>
+                                <path d="M44.5 20H24v8.5h11.7c-1.1 3.1-4.1 5.5-7.7 5.5-2.2 0-4.2-.7-5.7-2l-7 5.4C15.4 41.2 19.4 45 24 45c10.5 0 19.5-7.6 21-17.5 0-1.4-.1-2.7-.3-4z" fill="#1976D2"/>
+                            </g>
+                        </svg>
+                        Sign in with Google
+                    </button>
+                </div>
                 <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
                     <div className="rounded-md shadow-sm -space-y-px">
                         <div>

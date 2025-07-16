@@ -2,6 +2,7 @@ import User from "@/model/User";
 import { NextAuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 import bcrypt from "bcryptjs";
+import GoogleProvider from "next-auth/providers/google";
 
 export const authOptions: NextAuthOptions = {
   providers: [
@@ -16,31 +17,30 @@ export const authOptions: NextAuthOptions = {
           throw new Error("Missing email or password");
         }
 
-        try {
-          const user = await User.findOne({ email: credentials.email });
+        const user = await User.findOne({ email: credentials.email });
 
-          if (!user) {
-            throw new Error("No user found with this email");
-          }
-
-          const isValid = await bcrypt.compare(
-            credentials.password,
-            user.password
-          );
-
-          if (!isValid) {
-            throw new Error("Invalid password");
-          }
-
-          return {
-            id: user._id.toString(),
-            email: user.email
-          };
-        } catch (error) {
-          console.error("Auth error:", error);
-          throw new Error("Authentication failed");
+        if (!user) {
+          throw new Error("No user found with this email");
         }
+
+        const isValid = await bcrypt.compare(
+          credentials.password,
+          user.password
+        );
+
+        if (!isValid) {
+          throw new Error("Invalid password");
+        }
+
+        return {
+          id: user._id.toString(),
+          email: user.email
+        };
       }
+    }),
+    GoogleProvider({
+      clientId: process.env.GOOGLE_CLIENT_ID!,
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET!,
     })
   ],
 
